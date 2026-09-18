@@ -1,0 +1,39 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-09-17T16:00:00Z" },
+  "title": "Colophon — Brand Identity",
+  "namespace": "Colophon",
+  "libraries": [],
+  "sections": {},
+  "groups": ["Device"],
+  "assetGroups": {
+    "Device": {
+      "name": "Device",
+      "tile": "m",
+      "order": ["colophon-device.svg", "colophon-ornament.svg"],
+      "files": {
+        "colophon-device.svg": {
+          "name": "colophon-device.svg",
+          "blob": "536901b6f4dcd5162c079aca56cdd839",
+          "size": 313,
+          "type": "image/svg+xml"
+        },
+        "colophon-ornament.svg": {
+          "name": "colophon-ornament.svg",
+          "blob": "4dbd3984fefa6693d292f9dda0690be5",
+          "size": 332,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": { "readme": "project/README.md", "sections": [] },
+  "lastChange": {
+    "by": "Maximilian",
+    "at": "2026-09-17T18:05:00Z",
+    "via": "Claude chat",
+    "note": "Device mark settled: the colophon block knocked out of a vermilion square, with an in-text ornament."
+  }
+}

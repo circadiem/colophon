@@ -1,0 +1,53 @@
+<!-- @dsCard group="Record" height=300 subtitle="The eight statuses from II" -->
+<div id="root"></div>
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  #root {
+    padding: var(--space-5);
+    background: var(--surface-page);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 14px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid currentColor;
+    border-radius: var(--radius-sm);
+  }
+  .row { display: flex; align-items: center; gap: var(--space-3); }
+  .note {
+    font-family: var(--font-serif);
+    font-size: 13.5px;
+    line-height: 21px;
+    color: var(--ink-tertiary);
+  }
+  .open { color: var(--status-open); }
+  .scheduled { color: var(--status-scheduled); }
+  .clear { color: var(--status-clear); }
+  .closed { color: var(--status-closed); }
+  .held { color: var(--status-held); }
+</style>
+<script>
+  const rows = [
+    ['TERMINABLE·NOW', 'open', 'window open, notice can still be served in time'],
+    ['REVERTED·LIKELY', 'open', 'out-of-print or lapsed-option signals'],
+    ['NEVER·GRANTED', 'open', 'no evidence the right ever left the author'],
+    ['TERMINABLE·FUTURE', 'scheduled', 'notice service opens on a date'],
+    ['PUBLIC·DOMAIN', 'clear', 'no acquisition needed'],
+    ['EXCLUDED·WFH', 'closed', 'no termination right exists, ever'],
+    ['LAPSED·WINDOW', 'closed', 'notice deadline missed — permanently closed'],
+    ['GRANTED·ACTIVE', 'held', 'held and exploited — monitor only'],
+  ];
+  document.getElementById('root').innerHTML = rows.map(function (r) {
+    return '<div class="row"><span class="chip ' + r[1] + '">' + r[0] + '</span>' +
+           '<span class="note">' + r[2] + '</span></div>';
+  }).join('');
+</script>

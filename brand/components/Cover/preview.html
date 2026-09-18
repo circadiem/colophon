@@ -1,0 +1,42 @@
+<!-- @dsCard height=300 -->
+<div id="root"></div>
+<style>
+  body { margin: 0; }
+  #root { width: 960px; height: 300px; }
+  .ground { fill: var(--surface-page); }
+  .slab   { fill: var(--ink); }
+  .stamp  { fill: var(--stamp); }
+  .sched  { fill: var(--status-scheduled); }
+  .clear  { fill: var(--status-clear); }
+  .tint   { fill: var(--stamp-muted); }
+  .hair   { stroke: var(--rule-strong); stroke-width: 1; }
+  .name   { fill: var(--ink); font-family: var(--font-serif); font-size: 88px; font-weight: 300; letter-spacing: -0.01em; }
+  .tag    { fill: var(--ink-secondary); font-family: var(--font-serif); font-size: 13px; }
+</style>
+<!--
+  blocks:      ink 136x300 slab · stamp 176x64 · status-scheduled 240x40 · status-clear 128x40 · stamp-muted 296x64
+               (every side a space-7/space-6/space-5/space-3 multiple; all rx = radius-none)
+  arrangement: one tall ink slab bleeding off top, bottom and right at the fore-edge, with unequal bands
+               stepping left away from it — the text block of an imprint page seen edge-on as strata
+  pattern:     the editorial / serif / hairlines-not-shadows row — four rule-strong hairlines at 1px crossing
+               the bands, the ruled register of a ledger; chosen because this system forbids elevation
+               outright and separates only with rules, so a rule IS the brand's one mark-making gesture
+  scales:      x and y on space-3 (12px) multiples, corners radius-none (0), hairline 1px at rule-strong
+-->
+<svg viewBox="0 0 960 300" width="960" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect class="ground" x="0" y="0" width="960" height="300"/>
+
+  <rect class="tint"  x="504" y="216" width="296" height="64"/>
+  <rect class="sched" x="560" y="104" width="240" height="40"/>
+  <rect class="stamp" x="624" y="24"  width="176" height="64"/>
+  <rect class="clear" x="672" y="160" width="128" height="40"/>
+  <rect class="slab"  x="824" y="0"   width="136" height="300"/>
+
+  <line class="hair" x1="480" y1="60.5"  x2="960" y2="60.5"/>
+  <line class="hair" x1="480" y1="132.5" x2="960" y2="132.5"/>
+  <line class="hair" x1="480" y1="180.5" x2="960" y2="180.5"/>
+  <line class="hair" x1="480" y1="252.5" x2="960" y2="252.5"/>
+
+  <text class="name" x="64" y="236">Colophon</text>
+  <text class="tag"  x="64" y="268">The record of who holds the book.</text>
+</svg>

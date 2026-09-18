@@ -1,0 +1,49 @@
+<!-- @dsCard group="Identity" height=340 subtitle="The mark, the ornament, and the lockup" -->
+<div id="root"></div>
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  #root {
+    padding: var(--space-5);
+    background: var(--surface-page);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+  .row { display: flex; align-items: flex-end; gap: var(--space-6); }
+  .lock { display: flex; align-items: center; gap: var(--space-4); }
+  .mark { fill: var(--stamp); }
+  .orn { fill: var(--ink); }
+  .wordmark {
+    font-family: var(--font-serif);
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    color: var(--ink);
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-tertiary);
+  }
+</style>
+<div id="board" hidden></div>
+<script>
+  const D = 'M0 0H48V48H0Z M10 11H38V13.5H10Z M10 17H38V19.5H10Z M13 23H35V25.5H13Z M13 29H35V31.5H13Z M17 35H31V37.5H17Z';
+  const O = 'M0 0H48V1H0Z M8 9H40V11H8Z M8 15H40V17H8Z M11 21H37V23H11Z M11 27H37V29H11Z M15.5 33H32.5V35H15.5Z M19.5 39H28.5V41H19.5Z M0 47H48V48H0Z';
+  function svg(path, cls, size, rule) {
+    return '<svg viewBox="0 0 48 48" width="' + size + '" height="' + size +
+      '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Colophon">' +
+      '<path class="' + cls + '"' + (rule ? ' fill-rule="evenodd"' : '') + ' d="' + path + '"></path></svg>';
+  }
+  document.getElementById('root').innerHTML =
+    '<div class="row">' +
+      svg(D, 'mark', 96, true) + svg(D, 'mark', 48, true) +
+      svg(D, 'mark', 24, true) + svg(D, 'mark', 16, true) +
+      '<span class="label">96 · 48 · 24 · 16</span>' +
+    '</div>' +
+    '<div class="lock">' + svg(D, 'mark', 24, true) +
+      '<span class="wordmark">COLOPHON</span></div>' +
+    '<div class="row">' + svg(O, 'orn', 40, false) +
+      '<span class="label">ornament — in running text only</span></div>';
+</script>

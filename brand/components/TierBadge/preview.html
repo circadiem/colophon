@@ -1,0 +1,56 @@
+<!-- @dsCard group="Record" height=260 subtitle="Confidence as a count, never a colour" -->
+<div id="root"></div>
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  #root {
+    padding: var(--space-5);
+    background: var(--surface-page);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+  .row { display: flex; align-items: center; gap: var(--space-3); }
+  .badge { display: flex; align-items: center; gap: var(--space-1); }
+  .pips { display: flex; gap: 3px; }
+  .pip { width: 7px; height: 7px; border-radius: var(--radius-none); }
+  .pip.on { background: var(--ink); }
+  .pip.off { background: var(--rule-strong); }
+  .datum {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--ink);
+  }
+  .asof {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--ink-tertiary);
+  }
+  .note {
+    font-family: var(--font-serif);
+    font-size: 13.5px;
+    line-height: 21px;
+    color: var(--ink-tertiary);
+  }
+</style>
+<script>
+  const rows = [
+    [1, '2026-09-17', 'recorded transfer · document-verified'],
+    [2, '2026-09-17', 'registration claimant, screen credit, rights-guide listing'],
+    [3, '2026-04-02', 'deal announcement, agency listing, absence of follow-through'],
+    [4, '2025-11-20', 'absence signals only — cheapest deals in the corpus'],
+  ];
+  document.getElementById('root').innerHTML = rows.map(function (r) {
+    var pips = '';
+    for (var i = 1; i <= 4; i++) {
+      pips += '<span class="pip ' + (i <= 5 - r[0] ? 'on' : 'off') + '"></span>';
+    }
+    return '<div class="row">' +
+      '<span class="badge"><span class="pips">' + pips + '</span>' +
+      '<span class="datum">tier ' + r[0] + '</span>' +
+      '<span class="asof">&nbsp;· as of ' + r[1] + '</span></span>' +
+      '<span class="note">' + r[2] + '</span></div>';
+  }).join('');
+</script>
