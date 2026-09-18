@@ -84,7 +84,8 @@ Fields: `author.living` · `author.death_date` · `illustrator.living` · `illus
 `trademark.k.status` · `counterparty.name` · `counterparty.route` · `search`.
 
 The termination-interest fractions are computed by hand for now; per-stirpes math is deferred to
-Month 01 (Step 0 answer 2.13).
+Month 01 (Step 0 answer 2.13). Fractions are written `1/2` or `0.5`, and the fractions on one
+grant must sum to exactly 1, or the file is rejected: a sum that misses is an incomplete family.
 
 ## `demand.csv` — adaptation and demand evidence (Protocol §G)
 

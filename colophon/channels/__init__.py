@@ -24,6 +24,7 @@ from .model import (
 )
 from .replay import Assertion, Change, Replay, Subject, assertions_from, render_diff, supersede
 from .results import Channel, ChannelResult, NoticeSummary, StatusResult, StatutoryWindow, Undetermined
+from .rollup import LADDER, TERMINAL, ContributionPosition, GrantPosition, TriplePosition, contribution_position, grant_position, triple_position
 from .section_203 import evaluate_203, required_signatories
 from .section_304 import evaluate_304
 from .status import Reason, Status
@@ -38,5 +39,7 @@ __all__ = [
     "Reason", "Status",
     "compute", "channel_c", "evaluate_203", "evaluate_304", "evaluate_out_of_print", "required_signatories",
     "no_reprint_within_threshold", "explain", "possible_statuses",
+    "LADDER", "TERMINAL", "GrantPosition", "ContributionPosition", "TriplePosition",
+    "grant_position", "contribution_position", "triple_position",
     "Assertion", "Change", "Replay", "Subject", "assertions_from", "render_diff", "supersede",
 ]

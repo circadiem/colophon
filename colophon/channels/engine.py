@@ -1,7 +1,7 @@
 """Run every channel on a work and return the results side by side.
 
-No channel's result suppresses another's (CLAUDE.md §3 'channel'; docs/II §05 Example A). No
-triple-level merge is performed: that rule is a pending doc edit (Step 0 answer 2.6). Territory
+No channel's result suppresses another's (CLAUDE.md §3 'channel'; docs/II §05 Example A). The
+reported position is a separate step, rollup.py, and always carries its constituents. Territory
 is not an input here; the caller forms the (work, right_type, territory) triple (answer 3).
 """
 

@@ -8,13 +8,19 @@ Rules applied to every row of every table (Manual Research Protocol §H):
 - ``tier`` is 1-4, ``capture_date`` is an ISO date
 - one row per fact: two rows for the same fact with the same value corroborate each other and
   are merged (strongest tier, union of evidence); two rows with different values are a
-  contradiction. A contradicted fact never reaches the engine; it is recorded on the Case for
+  contradiction. Note the direction: corroboration takes the STRONGEST tier (a weaker agreeing
+  source does not dilute a stronger one); computation in channels/ takes the WEAKEST input used
+  (Step 0 answer 2.5). Same word, opposite direction.
+- termination_interest.<party>.fraction rows on one grant must sum to exactly 1: per-stirpes
+  shares always do, so a sum that misses is an incomplete family, which would produce a confident
+  majority over the wrong people. A contradicted fact never reaches the engine; it is recorded on the Case for
   the contradiction queue and can be asserted with ``expected = CONTRADICTION:<field>``.
 """
 
 from __future__ import annotations
 
 import csv
+from fractions import Fraction
 from dataclasses import dataclass, field as dc_field
 from datetime import date
 from pathlib import Path
@@ -296,10 +302,29 @@ def validate_fact_table(rows: list[dict], table: str, fields: set[str], prefixes
         by_case.setdefault(r["case_id"], []).append(r)
     out: list[Contradiction] = []
     for cid, rs in by_case.items():
-        if table == "counterparty.csv" and not any(r["field"].strip() == "search" for r in rs):
-            raise LoadError(f"{table} {cid}: a search row is required (public indexes consulted, even when empty)")
+        if table == "counterparty.csv":
+            if not any(r["field"].strip() == "search" for r in rs):
+                raise LoadError(f"{table} {cid}: a search row is required (public indexes consulted, even when empty)")
+            _check_fraction_sums(table, cid, rs)
         out.extend(_group_facts(cid, rs)[1])
     return out
+
+
+def _check_fraction_sums(table: str, case_id: str, rows: list[dict]) -> None:
+    sums: dict[str | None, Fraction] = {}
+    for r in rows:
+        f = r["field"].strip()
+        if f.startswith("termination_interest.") and f.endswith(".fraction"):
+            try:
+                share = Fraction(r["value"].strip())
+            except (ValueError, ZeroDivisionError):
+                raise LoadError(f"{table} {case_id}/{f}: fraction must be a number like 1/4 or 0.25, got {r['value']!r}") from None
+            gid = r["grant_id"].strip() or None
+            sums[gid] = sums.get(gid, Fraction(0)) + share
+    for gid, total in sums.items():
+        if total != 1:
+            raise LoadError(f"{table} {case_id}/{gid or '-'}: termination-interest fractions sum to {total}, not 1; "
+                            "the family is incomplete or a share is wrong")
 
 
 def check_expectation(cases: dict[str, Case], row: dict) -> list[str]:

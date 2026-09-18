@@ -147,3 +147,18 @@ def test_counterparty_and_demand_tables_validate_and_surface_contradictions():
     ok = [_row(grant_id="", field="adaptation.1.year", value="1994", citation_span="released 1994"),
           _row(grant_id="", field="screen_case", value="Three sentences.", source_id="researcher", citation_span="Three sentences.")]
     assert validate_fact_table(ok, "demand.csv", DEMAND_FIELDS, DEMAND_PREFIXES) == []
+
+
+def test_termination_interest_fractions_must_sum_to_one():
+    import pytest
+
+    base = [_row(grant_id="", field="search", value="probate index", tier="2", citation_span="searched")]
+    half = _row(grant_id="g", field="termination_interest.widow.fraction", value="1/2", citation_span="probate")
+    quarter = _row(grant_id="g", field="termination_interest.child-a.fraction", value="1/4", citation_span="probate")
+    quarter_b = _row(grant_id="g", field="termination_interest.child-b.fraction", value="0.25", citation_span="probate")
+    assert validate_fact_table(base + [half, quarter, quarter_b], "counterparty.csv", COUNTERPARTY_FIELDS, COUNTERPARTY_PREFIXES) == []
+    with pytest.raises(LoadError, match="sum to 3/4"):
+        validate_fact_table(base + [half, quarter], "counterparty.csv", COUNTERPARTY_FIELDS, COUNTERPARTY_PREFIXES)
+    with pytest.raises(LoadError, match="fraction must be a number"):
+        validate_fact_table(base + [_row(grant_id="g", field="termination_interest.x.fraction", value="half", citation_span="p")],
+                            "counterparty.csv", COUNTERPARTY_FIELDS, COUNTERPARTY_PREFIXES)

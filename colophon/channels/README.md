@@ -19,9 +19,10 @@ doc edits they describe land.
 | `channel_a.py` | Out-of-print archetype; reprint threshold unresolved, no default |
 | `engine.py` | `compute()`: every channel, every grant, one `as_of`, no merge |
 | `replay.py` | Assertions, `supersede()`, and the reviewable diff between rule versions |
+| `rollup.py` | The three-level rollup from per-grant results to a reported triple position; grant is the unit of computation, triple the unit of reporting |
 | `explain.py` | `explain(result)`: a result rendered for a human auditor; straddles name their candidate statuses |
 
 Not implemented here: `PUBLIC_DOMAIN`, Channel B, the other Channel A archetypes, per-stirpes
-holder shares, any triple-level merge of channel results, and the execution-date presumption
+holder shares, and the execution-date presumption
 (CLAUDE.md §5.1). Each is either unspecified or out of this build's scope; see the README at the
 repo root.

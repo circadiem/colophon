@@ -7,8 +7,8 @@ Two result kinds, both stamped with RULE_VERSION and as_of:
 - ``Undetermined``: no status, with an enumerated ``Reason`` and, where computed, the window
   whose range caused the straddle. It is not a ninth status (Step 0 answer 2.4).
 
-Results are per grant and per channel. There is no triple-level merge: docs/II §01's "exactly
-one status per triple" is overstated and the merge rule is a pending doc edit (answer 2.6).
+Results are per grant and per channel: the grant is the unit of computation. The triple is the
+unit of reporting and is built by rollup.py, never by collapsing these results in place.
 """
 
 from __future__ import annotations
