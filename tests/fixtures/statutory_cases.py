@@ -83,7 +83,7 @@ CASE_304D_EXERCISED = {
     "grant": GRANT_1935,
     "notice_search": SEARCH_FOUND_304C,
     "as_of": date(2026, 9, 17),
-    "expected_304c": {"window_start": "1991-03", "window_end": "1996-03", "last_serviceable_date": "1994-03"},
+    "expected_304c": {"window_start": "1991-03", "window_end": "1996-03", "last_serviceable_date": "1994-02-28..1994-03-30"},
     "expected_sections": (Section.SECTION_304C,),  # no second window
 }
 
@@ -95,7 +95,7 @@ CASE_304D_AVAILABLE = {
     "grant": GRANT_1935,
     "notice_search": SEARCH_FOUND_NOTHING,
     "as_of": date(2026, 9, 17),
-    "expected_304d": {"window_start": "2010-03", "window_end": "2015-03", "last_serviceable_date": "2013-03"},
+    "expected_304d": {"window_start": "2010-03", "window_end": "2015-03", "last_serviceable_date": "2013-02-28..2013-03-30"},
     "expected_sections": (Section.SECTION_304C, Section.SECTION_304D),
 }
 
@@ -126,7 +126,7 @@ CASE_SUCCESSOR_304C = {
                     conveys=True, published="1970-06", span="grant executed by the author's widow"),
     "notice_search": SEARCH_FOUND_NOTHING,
     "as_of": date(2026, 9, 17),
-    "expected_304c": {"window_start": "2026-06", "window_end": "2031-06", "last_serviceable_date": "2029-06"},
+    "expected_304c": {"window_start": "2026-06", "window_end": "2031-06", "last_serviceable_date": "2029-05-31..2029-06-29"},
 }
 
 # --- A joint work requiring both signatories -------------------------------------------------

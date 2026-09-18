@@ -4,7 +4,8 @@ No I/O, no database, no network, no model, no clock reads except an injected ``a
 (CLAUDE.md I6). Governing text: docs/II-rights-availability-logic.md and CLAUDE.md §4.
 """
 
-from .channel_a import OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS, evaluate_out_of_print
+from .channel_a import OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS, evaluate_out_of_print, no_reprint_within_threshold
+from .explain import explain, possible_statuses
 from .dates import DateRange, PartialDate, Precision, add_years
 from .engine import channel_c, compute
 from .model import (
@@ -35,5 +36,6 @@ __all__ = [
     "Channel", "ChannelResult", "NoticeSummary", "StatusResult", "StatutoryWindow", "Undetermined",
     "Reason", "Status",
     "compute", "channel_c", "evaluate_203", "evaluate_304", "evaluate_out_of_print", "required_signatories",
+    "no_reprint_within_threshold", "explain", "possible_statuses",
     "Assertion", "Change", "Replay", "Subject", "assertions_from", "render_diff", "supersede",
 ]

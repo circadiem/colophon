@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from datetime import date
 
+from .dates import DateRange, PartialDate
 from .model import OutOfPrintSignals
 from .reading import Reading
 from .results import Channel, ChannelResult, StatusResult, Undetermined
@@ -27,6 +28,21 @@ from .version import RULE_VERSION
 OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS: int | None = None
 
 OUT_OF_PRINT_ARCHETYPE_TIER = 3
+
+
+def no_reprint_within_threshold(last_reprint: PartialDate | None, as_of: date) -> bool:
+    """Evaluate the reprint signal from a date. Fails loudly until docs/II states the threshold;
+    there is no default to fall back on."""
+    if OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS is None:
+        raise NotImplementedError(
+            "docs/II §03 does not state the out-of-print reprint threshold ('several years'); "
+            "no default (Step 0 answer 2.7). Supply the number in docs/II first."
+        )
+    if last_reprint is None:
+        return True
+    # Conservative with ranged dates: a reprint counts as recent unless every possible date is
+    # older than the threshold.
+    return DateRange.of(last_reprint).add_years(OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS).entirely_before(as_of)
 
 CONFIRMING_ACTION = "Confirm in-print status and reversion terms with the publisher's permissions desk."
 

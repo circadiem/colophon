@@ -94,7 +94,7 @@ def test_dual_clock_takes_execution_plus_forty_when_publication_is_late():
     r = _one(compute(work=_work(), grants=(g,), as_of=date(2030, 1, 1)))
     assert r.window.window_start.display() == "2020-01-10"  # 1980-01-10 + 40y < 1990-06-01 + 35y
     assert r.window.window_end.display() == "2025-01-10"
-    assert r.window.last_serviceable_date.display() == "2023-01-10"
+    assert r.window.last_serviceable_date.display() == "2023-01-09"  # window_end - 2y - 1 day
 
 
 def test_non_conveying_grant_uses_execution_plus_thirty_five():
@@ -102,19 +102,20 @@ def test_non_conveying_grant_uses_execution_plus_thirty_five():
     r = _one(compute(work=_work(), grants=(g,), as_of=AS_OF))
     assert r.window.window_start.display() == "2021-04"
     assert r.window.window_end.display() == "2026-04"
-    assert r.window.last_serviceable_date.display() == "2024-04"
+    assert r.window.last_serviceable_date.display() == "2024-03-31..2024-04-29"
     assert r.status is Status.LAPSED_WINDOW
 
 
 def test_status_boundaries_follow_the_termination_window():
     """Step 0 answer 2.1: FUTURE before start, NOW through last_serviceable, LAPSED after."""
     g = _grant(executed_on=fact(pd("1990-01-10"), 1, "x"), publication_under_grant=fact(pd("1991-03-05"), 1, "p"))
-    # window_start = min(1991-03-05 + 35y, 1990-01-10 + 40y) = 2026-03-05; last serviceable 2029-03-05
+    # window_start = min(1991-03-05 + 35y, 1990-01-10 + 40y) = 2026-03-05; window_end 2031-03-05;
+    # last effective date 2031-03-04; last serviceable 2029-03-04 (Step 1 answer 1).
     expectations = {
         date(2026, 3, 4): Status.TERMINABLE_FUTURE,
         date(2026, 3, 5): Status.TERMINABLE_NOW,
-        date(2029, 3, 5): Status.TERMINABLE_NOW,
-        date(2029, 3, 6): Status.LAPSED_WINDOW,
+        date(2029, 3, 4): Status.TERMINABLE_NOW,
+        date(2029, 3, 5): Status.LAPSED_WINDOW,  # notice today supports no effective date inside the window
         date(2030, 6, 1): Status.LAPSED_WINDOW,  # inside the window, past the deadline
     }
     for as_of, expected in expectations.items():
@@ -132,7 +133,7 @@ def test_year_only_input_that_straddles_as_of_emits_no_status():
     assert r.reason is Reason.STRADDLES_AS_OF
     assert r.window is not None
     assert r.window.window_start.display() == "2026"
-    assert r.window.last_serviceable_date.display() == "2029"
+    assert r.window.last_serviceable_date.display() == "2028-12-31..2029-12-30"
 
 
 def test_year_only_input_that_does_not_straddle_is_estimated():

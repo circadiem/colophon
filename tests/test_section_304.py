@@ -107,7 +107,7 @@ def test_304c_applies_the_1978_floor():
     c = _by_section(results)[Section.SECTION_304C]
     assert c.window.window_start.display() == "1978-01-01"
     assert c.window.window_end.display() == "1983-01-01"
-    assert c.window.last_serviceable_date.display() == "1981-01-01"
+    assert c.window.last_serviceable_date.display() == "1980-12-31"
     assert c.window.notice_servable_from.display() == "1968-01-01"
 
 

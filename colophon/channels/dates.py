@@ -16,7 +16,10 @@ Conventions
   the minimum of two uncertain values lies between the minimum of the lower bounds and the
   minimum of the upper bounds. Likewise the maximum, used for the §304(c) 1978 floor.
 - A window is half-open, ``[start, start + 5y)``: the last effective date is the day before
-  ``window_end``. ``last_serviceable_date = window_end - 2y`` follows docs/II §02 literally.
+  ``window_end``. Notice must precede the effective date by at least two years, so
+  ``last_serviceable_date = window_end - 2y - 1 day`` (Step 1 answer 1; docs/II §02's
+  ``window_end - 2y`` is shorthand that is wrong by one day at day precision, in the expensive
+  direction). Subtracting a day is the only timedelta arithmetic in channels/.
 - No clock reads. ``as_of`` is injected by the caller and is always a ``datetime.date``.
 """
 
@@ -24,7 +27,7 @@ from __future__ import annotations
 
 import calendar
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from enum import Enum
 
 
@@ -124,6 +127,9 @@ class DateRange:
 
     def add_years(self, years: int) -> "DateRange":
         return DateRange(add_years(self.earliest, years), add_years(self.latest, years))
+
+    def add_days(self, days: int) -> "DateRange":
+        return DateRange(self.earliest + timedelta(days=days), self.latest + timedelta(days=days))
 
     @property
     def is_exact(self) -> bool:

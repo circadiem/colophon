@@ -7,7 +7,8 @@ Governing text: docs/II §02 "§ 304(c) and § 304(d)", CLAUDE.md §4, Step 0 an
             → window = copyright_secured + 75y … +5y
 
 The notice rule is the same as § 203: not less than two nor more than ten years before the
-effective date, so last_serviceable_date = window_end - 2y applies here too (answer 2.9).
+effective date, so last_serviceable_date = window_end - 2y - 1 day applies here too (Step 0 answer 2.9,
+Step 1 answer 1).
 The heir exclusion is § 203-only: § 304(c) reaches grants by the author or by the persons
 entitled to the renewal (answer 2.8).
 """

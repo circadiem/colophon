@@ -6,7 +6,7 @@ Governing text: docs/II §02 "§ 203", CLAUDE.md §4, Step 0 answers 2.1-2.5, 2.
                      min( publication_date + 35y , execution_date + 40y )
                    else execution_date + 35y
     window_end   = window_start + 5y                       (exclusive)
-    last_serviceable_date = window_end - 2y                (the real deadline)
+    last_serviceable_date = window_end - 2y - 1 day        (the real deadline; Step 1 answer 1)
     notice_servable_from  = window_start - 10y
 
 Read this top to bottom with the statute open. Each numbered step is one condition.

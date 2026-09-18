@@ -4,4 +4,4 @@ Bump on any change to the arithmetic, the branch conditions, the status boundari
 codes. A bump produces new assertions that supersede the old ones (I4); see replay.py.
 """
 
-RULE_VERSION = "0.1.0"
+RULE_VERSION = "0.2.0"

@@ -19,6 +19,7 @@ doc edits they describe land.
 | `channel_a.py` | Out-of-print archetype; reprint threshold unresolved, no default |
 | `engine.py` | `compute()`: every channel, every grant, one `as_of`, no merge |
 | `replay.py` | Assertions, `supersede()`, and the reviewable diff between rule versions |
+| `explain.py` | `explain(result)`: a result rendered for a human auditor; straddles name their candidate statuses |
 
 Not implemented here: `PUBLIC_DOMAIN`, Channel B, the other Channel A archetypes, per-stirpes
 holder shares, any triple-level merge of channel results, and the execution-date presumption

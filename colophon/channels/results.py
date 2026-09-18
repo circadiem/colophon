@@ -32,8 +32,10 @@ class Channel(Enum):
 class StatutoryWindow:
     """The termination window and the notice dates that hang off it.
 
-    ``window_end`` is exclusive: the window is [window_start, window_end).
-    ``last_serviceable_date`` is the primary date surfaced to the operator (CLAUDE.md §4).
+    ``window_end`` is exclusive: the window is [window_start, window_end), so the last effective
+    date is ``window_end - 1 day``.
+    ``last_serviceable_date`` is the primary date surfaced to the operator (CLAUDE.md §4): the last
+    effective date minus two years, i.e. ``window_end - 2y - 1 day`` (Step 1 answer 1).
     ``notice_servable_from`` is when notice service opens: ten years before the window.
     ``earliest_effective_if_served_at_as_of`` answers "served today, when could it take effect":
     the later of window_start and as_of + 2y.
@@ -51,7 +53,7 @@ class StatutoryWindow:
         return cls(
             window_start=start,
             window_end=end,
-            last_serviceable_date=end.add_years(-2),
+            last_serviceable_date=end.add_days(-1).add_years(-2),
             notice_servable_from=start.add_years(-10),
             earliest_effective_if_served_at_as_of=DateRange.max_of(start, DateRange.exact(add_years(as_of, 2))),
         )

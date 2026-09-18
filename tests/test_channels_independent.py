@@ -56,3 +56,13 @@ def test_channel_a_tier_is_capped_by_its_weakest_input():
     r = results[0]
     assert isinstance(r, StatusResult)
     assert r.tier == 4
+
+
+def test_evaluating_the_reprint_signal_from_a_date_fails_loudly_without_a_threshold():
+    """Step 1 check: no number was chosen. The constant is None and nothing computes from it."""
+    import pytest
+
+    from colophon.channels import PartialDate, no_reprint_within_threshold
+
+    with pytest.raises(NotImplementedError, match="docs/II"):
+        no_reprint_within_threshold(PartialDate.parse("2015"), AS_OF)

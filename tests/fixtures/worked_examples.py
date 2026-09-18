@@ -68,7 +68,9 @@ EXAMPLE_A = WorkedExample(
     expected={
         "window_start": "2022-09",
         "window_end": "2027-09",
-        "last_serviceable_date": "2025-09",
+        # docs/II says "2025-09" at month precision. Under the stricter day (Step 1 answer 1) the
+        # last serviceable date is window_end - 2y - 1 day, a range one day earlier at each end.
+        "last_serviceable_date": "2025-08-31..2025-09-29",
         "status": Status.LAPSED_WINDOW,
         "channel_a_status": Status.REVERTED_LIKELY,
         # Companion assertion (answer 1.2): the clock is injected, not read.
@@ -113,7 +115,7 @@ EXAMPLE_B = WorkedExample(
     expected={
         "window_start": "2027-03",
         "window_end": "2032-03",
-        "last_serviceable_date": "2030-03",
+        "last_serviceable_date": "2030-02-28..2030-03-30",  # docs/II: "2030-03" at month precision
         "status": Status.TERMINABLE_FUTURE,
         # "notice may be served now": notice service opened ten years before the window.
         "notice_servable_from": "2017-03",
@@ -186,7 +188,7 @@ EXAMPLE_C = WorkedExample(
         "text": {
             "window_start": "2026-11",
             "window_end": "2031-11",
-            "last_serviceable_date": "2029-11",
+            "last_serviceable_date": "2029-10-31..2029-11-29",  # answer 1.1: "2029-11" at month precision
             "status": Status.TERMINABLE_FUTURE,
             # Companion assertion (answer 1.1): the window opens two months after as_of.
             "status_at_2026_12_01": Status.TERMINABLE_NOW,

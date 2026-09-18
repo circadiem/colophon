@@ -39,3 +39,6 @@ pytest
 ```
 
 Runtime has no dependencies beyond the standard library. pytest is the only development dependency.
+
+`colophon.channels.explain(result)` renders a result for a human auditor. `docs/backlog.md` holds the
+build backlog; `tests/fixtures/SCHEMA.md` is the table shape the manual research pass records in.

@@ -59,20 +59,22 @@ def test_bumped_rule_version_supersedes_rather_than_rewrites():
 
 
 def test_corrected_rule_produces_a_reviewable_diff():
+    """A real correction: rule build 0.1.0 used last_serviceable = window_end - 2y and asserted
+    '2025-09' for Example A; 0.2.0 takes the stricter day (Step 1 answer 1)."""
     current = _current(EXAMPLE_A)
-    # A prior, wrong build: naive 365-day arithmetic put last_serviceable a few days early.
     previous = tuple(
-        replace(a, rule_version="0.0.1", assertion_id=a.assertion_id + "-old",
-                object="2025-08-24" if a.predicate == "terminable_on" else a.object)
+        replace(a, rule_version="0.1.0", assertion_id=a.assertion_id + "-old",
+                object="2025-09" if a.predicate == "terminable_on" else a.object)
         for a in current
     )
     replay = supersede(previous, current)
     changed = [c for c in replay.diff if c.kind == "changed"]
     assert len(changed) == 1
     assert changed[0].predicate == "terminable_on"
-    assert (changed[0].old, changed[0].new) == ("2025-08-24", "2025-09")
+    assert (changed[0].old, changed[0].new) == ("2025-09", "2025-08-31..2025-09-29")
+    assert (changed[0].old_version, changed[0].new_version) == ("0.1.0", RULE_VERSION)
     text = render_diff(replay)
-    assert "terminable_on" in text and "2025-08-24" in text and "2025-09" in text
+    assert "terminable_on" in text and "2025-09 -> 2025-08-31..2025-09-29" in text
 
 
 def test_added_and_removed_assertions_appear_in_the_diff():

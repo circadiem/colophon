@@ -1,0 +1,8 @@
+case_id,grant_id,as_of,channel,section,expected,window_start,window_end,last_serviceable_date,tier,note
+II-05-A,II-05-A/publishing-agreement,2026-09-17,C,203,LAPSED_WINDOW,2022-09,2027-09,2025-08-31..2025-09-29,2,docs/II §05 A
+II-05-A,II-05-A/publishing-agreement,2024-01-01,C,203,TERMINABLE_NOW,2022-09,2027-09,2025-08-31..2025-09-29,2,clock injected (answer 1.2)
+II-05-A,,2026-09-17,A,,REVERTED_LIKELY,,,,3,Channel A remains fully open
+II-05-B,II-05-B/publishing-agreement,2026-09-17,C,203,TERMINABLE_FUTURE,2027-03,2032-03,2030-02-28..2030-03-30,2,docs/II §05 B
+II-05-C,II-05-C/text,2026-09-17,C,203,TERMINABLE_FUTURE,2026-11,2031-11,2029-10-31..2029-11-29,2,docs/II §05 C + answer 1.1
+II-05-C,II-05-C/text,2026-12-01,C,203,TERMINABLE_NOW,2026-11,2031-11,2029-10-31..2029-11-29,2,window opens two months after as_of
+II-05-C,II-05-C/art,2026-09-17,C,203,EXCLUDED_WFH,,,,2,pending document review = tier 2
