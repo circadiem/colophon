@@ -1,0 +1,1 @@
+"""Will hold the rights graph: grant, assignment, option, termination_notice, reversion and adaptation edges with parties, dates, right type, territory, tier and evidence set; additive, never overwritten (docs/IV §01, §03)."""
