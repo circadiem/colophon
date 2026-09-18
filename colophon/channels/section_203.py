@@ -58,8 +58,8 @@ def notice_summary(grant: Grant, section: Section, search: NoticeSearch | None) 
 
 def evaluate_203(grant: Grant, as_of: date, notice_search: NoticeSearch | None = None) -> ChannelResult:
     read = Reading()
-    common = dict(channel=Channel.C, section=Section.SECTION_203, grant_id=grant.grant_id, as_of=as_of,
-                  rule_version=RULE_VERSION)
+    common = dict(channel=Channel.C, section=Section.SECTION_203, grant_id=grant.grant_id,
+                  contribution=grant.contribution, as_of=as_of, rule_version=RULE_VERSION)
 
     def undetermined(reason: Reason, detail: str = "", window: StatutoryWindow | None = None,
                      action: str | None = None) -> Undetermined:

@@ -9,6 +9,7 @@ from .explain import explain, possible_statuses
 from .dates import DateRange, PartialDate, Precision, add_years
 from .engine import channel_c, compute
 from .model import (
+    Contribution,
     Evidence,
     Fact,
     Grant,
@@ -31,7 +32,7 @@ from .version import RULE_VERSION
 __all__ = [
     "RULE_VERSION", "OUT_OF_PRINT_REPRINT_THRESHOLD_YEARS",
     "DateRange", "PartialDate", "Precision", "add_years",
-    "Evidence", "Fact", "Grant", "Grantor", "NoticeSearch", "OutOfPrintSignals", "RightType", "Section",
+    "Contribution", "Evidence", "Fact", "Grant", "Grantor", "NoticeSearch", "OutOfPrintSignals", "RightType", "Section",
     "TerminationNotice", "Tier", "Work",
     "Channel", "ChannelResult", "NoticeSummary", "StatusResult", "StatutoryWindow", "Undetermined",
     "Reason", "Status",

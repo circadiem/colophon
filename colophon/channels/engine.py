@@ -33,11 +33,11 @@ def channel_c(work: Work, grant: Grant, as_of: date, notice_search: NoticeSearch
     if grant.executed_on is None:
         # Section unknown without an execution date. A WFH flag still settles it.
         if grant.work_made_for_hire is not None and read.read(grant.work_made_for_hire):
-            return (StatusResult(channel=Channel.C, section=None, grant_id=grant.grant_id, as_of=as_of,
+            return (StatusResult(channel=Channel.C, section=None, grant_id=grant.grant_id, contribution=grant.contribution, as_of=as_of,
                                  rule_version=RULE_VERSION, tier=read.tier, evidence=read.evidence, estimated=False,
                                  window=None, required_signatories=None, notice=None, status=Status.EXCLUDED_WFH,
                                  confirming_action=WFH_CONFIRMING_ACTION),)
-        return (Undetermined(channel=Channel.C, section=None, grant_id=grant.grant_id, as_of=as_of,
+        return (Undetermined(channel=Channel.C, section=None, grant_id=grant.grant_id, contribution=grant.contribution, as_of=as_of,
                              rule_version=RULE_VERSION, tier=None, evidence=(), estimated=False, window=None,
                              required_signatories=None, notice=None, reason=Reason.EXECUTION_DATE_REQUIRED,
                              confirming_action="Locate the execution date: a recorded transfer, the registration's "
@@ -48,7 +48,7 @@ def channel_c(work: Work, grant: Grant, as_of: date, notice_search: NoticeSearch
     if executed.entirely_before(EFFECTIVE_DATE_OF_1976_ACT):
         return evaluate_304(work, grant, as_of, notice_search)         # § 304: before 1978-01-01
     read.read(grant.executed_on)
-    return (Undetermined(channel=Channel.C, section=None, grant_id=grant.grant_id, as_of=as_of,
+    return (Undetermined(channel=Channel.C, section=None, grant_id=grant.grant_id, contribution=grant.contribution, as_of=as_of,
                          rule_version=RULE_VERSION, tier=read.tier, evidence=read.evidence, estimated=True,
                          window=None, required_signatories=None, notice=None, reason=Reason.SECTION_AMBIGUOUS,
                          detail=f"execution date {executed.display()} straddles 1978-01-01"),)

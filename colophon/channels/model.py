@@ -67,6 +67,16 @@ class Grantor(Enum):
     OTHER = "anyone else, including an heir or estate outside the renewal class"
 
 
+class Contribution(Enum):
+    """Which contribution a grant covers. Text and art sit in separate chains; a picture book
+    with separate agreements is two grants, one per contribution. Does not change the
+    arithmetic; it is how a split status is labelled (Manual Research Protocol §D)."""
+
+    TEXT = "text"
+    ILLUSTRATION = "illustration"
+    BOTH = "both"
+
+
 class Section(Enum):
     SECTION_203 = "17 U.S.C. § 203"
     SECTION_304C = "17 U.S.C. § 304(c)"
@@ -86,6 +96,7 @@ class Grant:
     executing_authors: Fact[int] | None  # joint authors who executed this grant
     work_made_for_hire: Fact[bool] | None
     grantee: str | None = None
+    contribution: Contribution | None = None
 
 
 @dataclass(frozen=True)

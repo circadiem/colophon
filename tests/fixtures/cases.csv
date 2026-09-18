@@ -6,7 +6,7 @@ II-05-A,II-05-A,II-05-A/publishing-agreement,executed_on,1986-04,2,docs/II-right
 II-05-A,II-05-A,II-05-A/publishing-agreement,conveys_publication,true,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,publication right conveyed
 II-05-A,II-05-A,II-05-A/publishing-agreement,publication_under_grant,1987-09,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,book published September 1987
 II-05-A,II-05-A,II-05-A/publishing-agreement,executing_authors,1,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Grant executed April 1986
-II-05-A,II-05-A,II-05-A/publishing-agreement,grantee,publisher-A,,,,,
+II-05-A,II-05-A,II-05-A/publishing-agreement,grantee,publisher-A,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,publication right conveyed
 II-05-A,II-05-A,,signals.no_edition_in_print,true,3,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Channel A remains fully open
 II-05-A,II-05-A,,signals.no_ebook_or_audio,true,3,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Channel A remains fully open
 II-05-A,II-05-A,,signals.no_reprint_within_threshold,true,3,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Channel A remains fully open
@@ -17,7 +17,7 @@ II-05-B,II-05-B,II-05-B/publishing-agreement,executed_on,1991-06,2,docs/II-right
 II-05-B,II-05-B,II-05-B/publishing-agreement,conveys_publication,true,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Window runs 2027-03 to 2032-03
 II-05-B,II-05-B,II-05-B/publishing-agreement,publication_under_grant,1992-03,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,published March 1992
 II-05-B,II-05-B,II-05-B/publishing-agreement,executing_authors,1,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Grant executed June 1991
-II-05-B,II-05-B,II-05-B/publishing-agreement,grantee,publisher-B,,,,,
+II-05-B,II-05-B,II-05-B/publishing-agreement,grantee,publisher-B,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Grant executed June 1991
 II-05-C,II-05-C,,original_publication_date,1991-11,2,step-0-answers.md,docs/II-rights-availability-logic.md#05,2026-09-18,published November 1991
 II-05-C,II-05-C,II-05-C/text,right_types,publication;dramatic,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Author and illustrator signed separate agreements
 II-05-C,II-05-C,II-05-C/text,grantor,author,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Author and illustrator signed separate agreements
@@ -25,10 +25,12 @@ II-05-C,II-05-C,II-05-C/text,executed_on,1989-04,2,step-0-answers.md,docs/II-rig
 II-05-C,II-05-C,II-05-C/text,conveys_publication,true,2,step-0-answers.md,docs/II-rights-availability-logic.md#05,2026-09-18,conveys the right of publication
 II-05-C,II-05-C,II-05-C/text,publication_under_grant,1991-11,2,step-0-answers.md,docs/II-rights-availability-logic.md#05,2026-09-18,published November 1991
 II-05-C,II-05-C,II-05-C/text,executing_authors,1,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,separate agreements
-II-05-C,II-05-C,II-05-C/text,grantee,publisher-C,,,,,
+II-05-C,II-05-C,II-05-C/text,grantee,publisher-C,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,signed separate agreements with the same publisher
+II-05-C,II-05-C,II-05-C/text,contribution,text,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,text TERMINABLE·FUTURE
 II-05-C,II-05-C,II-05-C/art,right_types,publication;dramatic,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Author and illustrator signed separate agreements
 II-05-C,II-05-C,II-05-C/art,grantor,author,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,Author and illustrator signed separate agreements
 II-05-C,II-05-C,II-05-C/art,executed_on,1989-04,2,step-0-answers.md,docs/II-rights-availability-logic.md#05,2026-09-18,Art grant: executed April 1989
 II-05-C,II-05-C,II-05-C/art,executing_authors,1,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,separate agreements
 II-05-C,II-05-C,II-05-C/art,work_made_for_hire,true,2,step-0-answers.md,docs/II-rights-availability-logic.md#05,2026-09-18,carries a work-made-for-hire recital as a supplementary work
-II-05-C,II-05-C,II-05-C/art,grantee,publisher-C,,,,,
+II-05-C,II-05-C,II-05-C/art,grantee,publisher-C,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,signed separate agreements with the same publisher
+II-05-C,II-05-C,II-05-C/art,contribution,illustration,2,docs/II-rights-availability-logic.md,docs/II-rights-availability-logic.md#05,2026-09-18,art EXCLUDED·WFH pending document review

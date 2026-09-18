@@ -52,7 +52,7 @@ def evaluate_out_of_print(signals: OutOfPrintSignals, as_of: date) -> ChannelRes
     fired = (read.read(signals.no_edition_in_print)
              and read.read(signals.no_ebook_or_audio)
              and read.read(signals.no_reprint_within_threshold))
-    common = dict(channel=Channel.A, section=None, grant_id=None, as_of=as_of, rule_version=RULE_VERSION,
+    common = dict(channel=Channel.A, section=None, grant_id=None, contribution=None, as_of=as_of, rule_version=RULE_VERSION,
                   estimated=False, window=None, required_signatories=None, notice=None)
     if not fired:
         return Undetermined(**common, tier=read.tier, evidence=read.evidence, reason=Reason.NO_SIGNAL,

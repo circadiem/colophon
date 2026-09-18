@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date
 
-from colophon.channels import Grant, Grantor, OutOfPrintSignals, RightType, Status, Work
+from colophon.channels import Contribution, Grant, Grantor, OutOfPrintSignals, RightType, Status, Work
 
 from tests.fixtures.helpers import AS_OF, fact, pd
 
@@ -164,6 +164,7 @@ EXAMPLE_C = WorkedExample(
             executing_authors=fact(1, 2, "separate agreements"),
             work_made_for_hire=None,
             grantee="publisher-C",
+            contribution=Contribution.TEXT,
         ),
         Grant(
             grant_id="II-05-C/art",
@@ -181,6 +182,7 @@ EXAMPLE_C = WorkedExample(
                 source_id="step-0-answers.md",
             ),
             grantee="publisher-C",
+            contribution=Contribution.ILLUSTRATION,
         ),
     ),
     as_of=AS_OF,

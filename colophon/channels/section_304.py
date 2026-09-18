@@ -39,7 +39,8 @@ def evaluate_304(work: Work, grant: Grant, as_of: date,
     read = Reading()
 
     def common(section: Section) -> dict:
-        return dict(channel=Channel.C, section=section, grant_id=grant.grant_id, as_of=as_of, rule_version=RULE_VERSION)
+        return dict(channel=Channel.C, section=section, grant_id=grant.grant_id, contribution=grant.contribution,
+                    as_of=as_of, rule_version=RULE_VERSION)
 
     def undetermined(section: Section, reason: Reason, detail: str = "", action: str | None = None) -> Undetermined:
         return Undetermined(**common(section), tier=read.tier, evidence=read.evidence, estimated=False, window=None,

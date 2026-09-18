@@ -52,6 +52,8 @@ def _window_lines(window: StatutoryWindow, as_of: date) -> list[str]:
 def explain(result: ChannelResult) -> str:
     section = result.section.value if result.section else "section not determined"
     grant = result.grant_id or "no grant"
+    if result.contribution is not None:
+        grant = f"{grant} ({result.contribution.value})"
     lines = [f"Channel {result.channel.name} · {section} · {grant} · as of {result.as_of.isoformat()} · rule {result.rule_version}"]
 
     if isinstance(result, StatusResult):

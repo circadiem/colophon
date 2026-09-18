@@ -17,7 +17,7 @@ import hashlib
 from dataclasses import dataclass, replace
 from datetime import datetime
 
-from .model import Evidence, Section, Tier
+from .model import Contribution, Evidence, Section, Tier
 from .results import Channel, ChannelResult, StatusResult, Undetermined
 
 
@@ -28,10 +28,12 @@ class Subject:
     channel: Channel
     section: Section | None
     territory: str | None = None  # the caller's; channels/ never branches on it
+    contribution: Contribution | None = None  # labels a split result; see docs/backlog.md
 
     def key(self) -> str:
         return "|".join([self.work_id, self.grant_id or "-", self.channel.name,
-                         self.section.name if self.section else "-", self.territory or "-"])
+                         self.section.name if self.section else "-", self.territory or "-",
+                         self.contribution.value if self.contribution else "-"])
 
 
 @dataclass(frozen=True)
@@ -64,7 +66,8 @@ def assertions_from(results: tuple[ChannelResult, ...], work_id: str, asserted_a
                     territory: str | None = None) -> tuple[Assertion, ...]:
     out: list[Assertion] = []
     for r in results:
-        subject = Subject(work_id=work_id, grant_id=r.grant_id, channel=r.channel, section=r.section, territory=territory)
+        subject = Subject(work_id=work_id, grant_id=r.grant_id, channel=r.channel, section=r.section, territory=territory,
+                          contribution=r.contribution)
         if isinstance(r, StatusResult):
             out.append(_make(subject, "status", r.status.name, r, asserted_at))
             if r.window is not None:

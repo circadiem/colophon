@@ -18,7 +18,7 @@ from datetime import date
 from enum import Enum
 
 from .dates import DateRange, add_years
-from .model import Evidence, Fact, Section, Tier
+from .model import Contribution, Evidence, Fact, Section, Tier
 from .status import Reason, Status
 
 
@@ -82,6 +82,7 @@ class ChannelResult:
     channel: Channel
     section: Section | None
     grant_id: str | None
+    contribution: Contribution | None  # carried from the grant; labels a split result
     as_of: date
     rule_version: str
     tier: Tier | None
