@@ -7,7 +7,8 @@ import pathlib
 import colophon.channels as channels
 
 ALLOWED_MODULES = {"dataclasses", "datetime", "enum", "hashlib", "typing", "calendar", "__future__", "collections"}
-FORBIDDEN_CALLS = {"today", "now", "utcnow", "open", "urlopen", "get", "post", "connect"}
+# Clock and file reads by name. Network access is excluded by the import allowlist above.
+FORBIDDEN_CALLS = {"today", "now", "utcnow", "fromtimestamp", "open", "urlopen"}
 
 
 def _sources():

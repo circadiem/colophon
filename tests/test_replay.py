@@ -13,7 +13,7 @@ from colophon.channels import (
     supersede,
 )
 
-from .fixtures.worked_examples import EXAMPLE_A, EXAMPLE_B
+from tests.fixtures.worked_examples import EXAMPLE_A, EXAMPLE_B
 
 ASSERTED_AT = datetime(2026, 9, 18, 9, 0, tzinfo=timezone.utc)
 
@@ -78,11 +78,14 @@ def test_corrected_rule_produces_a_reviewable_diff():
 def test_added_and_removed_assertions_appear_in_the_diff():
     previous = tuple(replace(a, rule_version="0.0.1", assertion_id=a.assertion_id + "-old") for a in _current(EXAMPLE_A))
     current = _current(EXAMPLE_A)
-    dropped = previous[:-1]
-    extra = current + (replace(current[0], assertion_id="extra", predicate="held_by", object="somebody"),)
-    replay = supersede(dropped, extra)
+    # The new build drops the last assertion and adds one the old build never made.
+    rebuilt = current[:-1] + (replace(current[0], assertion_id="extra", predicate="held_by", object="somebody"),)
+    replay = supersede(previous, rebuilt)
     kinds = sorted(c.kind for c in replay.diff)
-    assert "added" in kinds and "removed" in kinds
+    assert kinds.count("added") == 1 and kinds.count("removed") == 1
+    removed = next(c for c in replay.diff if c.kind == "removed")
+    assert removed.predicate == previous[-1].predicate
+    assert "- " in render_diff(replay) and "+ " in render_diff(replay)
 
 
 def test_assertion_ids_are_deterministic():

@@ -11,7 +11,7 @@ from datetime import date
 
 from colophon.channels import Grant, Grantor, OutOfPrintSignals, RightType, Status, Work
 
-from .helpers import AS_OF, fact, pd
+from tests.fixtures.helpers import AS_OF, fact, pd
 
 
 @dataclass(frozen=True)

@@ -13,8 +13,8 @@ from colophon.channels import (
     compute,
 )
 
-from .fixtures.helpers import AS_OF, fact
-from .fixtures.worked_examples import EXAMPLE_A
+from tests.fixtures.helpers import AS_OF, fact
+from tests.fixtures.worked_examples import EXAMPLE_A
 
 
 def test_reprint_threshold_has_no_default():

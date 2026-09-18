@@ -12,7 +12,7 @@ from colophon.channels import (
     compute,
 )
 
-from .fixtures.statutory_cases import (
+from tests.fixtures.statutory_cases import (
     CASE_304D_AVAILABLE,
     CASE_304D_EXERCISED,
     CASE_304D_TOO_LATE,

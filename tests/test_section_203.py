@@ -15,8 +15,8 @@ from colophon.channels import (
     compute,
 )
 
-from .fixtures.helpers import AS_OF, fact, pd
-from .fixtures.statutory_cases import CASE_HEIRS_203, CASE_JOINT_TWO
+from tests.fixtures.helpers import AS_OF, fact, pd
+from tests.fixtures.statutory_cases import CASE_HEIRS_203, CASE_JOINT_TWO
 
 
 def _one(results):

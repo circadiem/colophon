@@ -13,7 +13,7 @@ from colophon.channels import (
     compute,
 )
 
-from .fixtures.worked_examples import EXAMPLE_A, EXAMPLE_B, EXAMPLE_C, WORKED_EXAMPLES
+from tests.fixtures.worked_examples import EXAMPLE_A, EXAMPLE_B, EXAMPLE_C, WORKED_EXAMPLES
 
 
 def _channel_c(results, grant_id):

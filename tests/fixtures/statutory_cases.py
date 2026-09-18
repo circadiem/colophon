@@ -22,7 +22,7 @@ from colophon.channels import (
     Work,
 )
 
-from .helpers import ev, fact, pd
+from tests.fixtures.helpers import ev, fact, pd
 
 DOC_PRD = "docs/PRD.md"
 ANSWERS = "step-0-answers.md"
